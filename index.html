@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style/style.css" media="all">
+    <link rel="stylesheet" href="src/style/normalize.css">
+    <link rel="shortcut icon" href="src/assets/images/intro/nave-intro.png" type="image/x-icon">
+    <title>WARSPACE</title>
+</head>
+<body>
+    <main class="main">
+        <section class="containerHowDoIPlay">
+            <div class="howDoIPlayTitle">
+                <p>HOW DO I PLAY</p>
+            </div>
+            <div class="howDoIPlayDescricao toogleHowToIPlay">
+                <div><span>UP    -></span><span> W</span></div>
+                <div><span>DOWN  -></span><span>S</span></div>
+                <div><span>LEFT  -></span><span>A</span></div>
+                <div><span>RIGHT -></span><span>D</span></div>
+                <div><span>FIRE  -></span><span>SPACE</span></div>
+                <div><span>PAUSE -></span><span>ENTER</span></div>
+            </div>
+        </section>
+        <div class="naveIntro"></div>
+        <div><button class="btnIntro">START</button></div>
+        <div class="containerFooter">
+            <div class="footer">
+                <p class="footerTitle">&copy; Desenvolvido Por Moisés Dreckmann</p>
+                <div class="footerIcon">
+                    <p>JS</p>
+                </div>
+            </div>
+        </div>
+        <audio preload="metadata" class="audioStart">
+            <source src="src/assets/audios/startAudio.mp3" type="audio/mpeg">
+        </audio>
+    </main>
+    <script type="text/javascript" src="node_modules/animejs/lib/anime.min.js"></script>
+    <script  type="text/javascript" src="src/javascript/introducao/intro.js"></script>
+</body>
+</html>

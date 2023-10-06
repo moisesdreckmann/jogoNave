@@ -1,0 +1,401 @@
+@charset "UTF-8";
+
+@font-face {
+font-family: game;
+src: url("../assets/fonts/Game\ Played.otf");
+font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    font-family: game;
+}
+
+@keyframes shipIntro {
+    0% {
+        bottom: -40%;
+        left: 0;
+    }
+    100% {
+        bottom: 7%;
+        left: 22%;
+    }
+}
+
+@keyframes impulso {
+    0% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes carregamento {
+    0% {
+        width: 10px;
+    }
+    10% {
+        width: 30px;
+    }
+    20% {
+        width: 60px;
+    }
+    40% {
+        width: 80px;
+    }
+    60% {
+        width: 100px;
+    }
+    70% {
+        width: 110px;
+    }
+    80% {
+        width: 120px;
+    }
+    90% {
+        width: 140px;
+    }
+    100% {
+        width: 150px;
+    }
+}
+
+:root {
+    --letraIntro: #f5edec;
+    --cor1: #123E59;
+    --cor2: #217c91;
+    --cor3: #49F2F2;
+    --cor4: #F23E2E;
+    --cor5: #F2935C;
+    --cor7: #212120;
+    --cor8: #262726;
+
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/images/intro/background-inicial.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.naveIntro {
+    width: 48%;
+    height: 68%;
+    background-image: url(../assets/images/intro/nave-intro.png);
+    background-size: 100% 100%;
+    position: absolute;
+    transform: rotate(-10deg);
+    animation: shipIntro 2s linear forwards;
+    z-index: 6;
+}
+
+.containerHowDoIPlay {
+    width: 20%;
+    max-height: 50%;
+    background-color: transparent;
+    position: absolute;
+    right: 2%;
+    top: 3%;
+    border-radius: 8px 8px;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.317);
+}
+
+.howDoIPlayTitle {
+    width: 100%;
+    height: 20%;
+    border: 2px solid var(--cor4);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 8px 8px;
+    padding-block: 18px;
+}
+
+.howDoIPlayDescricao {
+    width: 100%;
+    height: 80%;
+    border: 2px solid var(--cor4);
+    border-top: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-inline: 30px;
+    padding-block: 10px;
+    gap: 10px;
+    border-radius: 8px 8px;
+}
+
+.toogleHowToIPlay {
+    display: none;
+}
+
+.howDoIPlayDescricao div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.btnIntro, .btnStart {
+    background-color: var(--cor4);
+    width: 250px;
+    height: 75px;
+    cursor: pointer;
+    letter-spacing: 3px;
+    color: var(--letraIntro);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0px 0px 6px rgba(0, 0, 0, 0.4),
+    inset 0px 8px 8px rgba(255, 255, 255, 0.1),
+    inset 0px 8px 8px rgba(255, 255, 255, 0.1);
+    position: relative;
+    border-radius: 50px 50px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    display: none;
+    transition: box-shadow 1s linear, background-color 1s ease-in-out .2s, opacity .5 ease-in; 
+    z-index: 8;
+}
+
+.btnStart {
+    display: block;
+    margin-top: 20px;
+    background-color: transparent;
+}
+
+.btnStart:hover {
+    background-color: var(--cor2);
+    transition:  background-color .5s ease;
+    animation: impulso .2s linear forwards;
+}
+
+
+.btnIntro:hover {
+    background-color: var(--cor2);
+    transition:  background-color .5s ease;
+    animation: impulso .2s linear forwards;
+}
+
+.footer {
+    width: 400px;
+    height: 30px;
+    color: var(--letraIntro);
+    text-align: center;
+    pointer-events: none;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerTitle {
+    font-size: 1.1em;
+}
+
+.footerIcon {
+    color: black;
+    width: 30px;
+    height: 25px;
+    font-size: 1.1em;
+    background-color: rgb(241, 196, 16);
+    box-shadow: 0px 0px 4px rgba(49, 142, 179, 0.199), 
+                inset 2px 2px 1px rgba(12, 12, 12, 0.082),
+                inset -2px -2px 1px rgba(12, 12, 12, 0.082);
+    border-radius: 2px 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    padding-top: 2px;
+}
+
+.containerFooter {
+    width: 100%;
+    height: 30px;
+    background-color: black;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerSectionChoose {
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sectionChoose {
+    width: 900px;
+    height: 400px;
+    background-color: var(--cor8);
+    border-radius: 2px 2px;
+    border: 2px solid rgb(22, 22, 22);
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.199), 
+    inset 10px 10px 10px rgba(12, 12, 12, 0.231),
+    inset -10px -10px 10px rgba(12, 12, 12, 0.231);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.containerRadios {
+    width: 280px;
+    height: 300px;
+    margin-left: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.radioChoose {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+} 
+
+.radioChoose:checked:before {
+    width: 22px;
+    height: 22px;
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-color: #F23E2E;
+    box-shadow: 0px 0px 4px rgba(49, 142, 179, 0.199), 
+                inset 2px 2px 1px rgba(12, 12, 12, 0.231),
+                inset -2px -2px 1px rgba(12, 12, 12, 0.231);
+    border: 4px solid white;
+    cursor: pointer;
+}
+
+.radioChoose:checked + label img {
+    height: 300px;
+}
+
+.imgNave {
+    height: 240px;
+    cursor: pointer;
+}
+
+.containerLoader {
+    width: 150px;
+    height: 30px;
+    cursor: none;
+    border-radius: 50px 50px;
+    margin-top: 20px;
+    background-color: white;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    display: none;
+}
+
+.loader {
+    width: 100%;
+    height: 100%;
+    cursor: none;
+    position: relative;
+    border-radius: 50px 50px; 
+    overflow: hidden;
+    background-color: white;  
+    border: 2px solid white;  
+}
+
+.loader::after {
+    content: '';
+    width: 10px;
+    height: 30px;
+    border-radius: 50px 50px;
+    background-color: var(--cor4);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0px 0px 6px rgba(0, 0, 0, 0.4),
+    inset 0px 8px 8px rgba(255, 255, 255, 0.1),
+    inset 0px 8px 8px rgba(255, 255, 255, 0.1);
+    position: absolute;
+    inset: 0;
+    animation: carregamento 3s linear forwards;
+}
+
+.containerFuncionalidadesChoose {
+    width: 300px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*game*/
+
+.mainGame {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    cursor: none;
+    position: relative;
+}
+
+.imgNaveEscolhida {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.containerImg {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: red;
+    z-index: 10;
+}
+
+.bgVideo {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css" media="all">
+    <link rel="stylesheet" href="../style/normalize.css">
+    <link rel="shortcut icon" href="../assets/images/intro/nave-intro.png" type="image/x-icon">
+    <title>choose your fighter ship!</title>
+</head>
+<body>
+    <main class="main">
+        <section class="containerSectionChoose">
+            <section class="sectionChoose">
+                <div class="containerRadios">
+                    <input type="radio" name="radioChoose" class="radioChoose" id="nave1">
+                    <label for="nave1"><img src="../assets/images/naves/nave1.png" alt="" class="imgNave"></label>
+                </div>  
+                <div class="containerRadios">
+                    <input type="radio" name="radioChoose" class="radioChoose" id="nave2">
+                    <label for="nave2"> <img src="../assets/images/naves/nave2.png" alt="" class="imgNave"></label>
+                </div>
+                <div class="containerRadios">
+                    <input type="radio" name="radioChoose" class="radioChoose" id="nave3">
+                    <label for="nave3"><img src="../assets/images/naves/nave3.png" alt="" class="imgNave"></label>
+                </div>  
+            </section>
+            <div class="containerFuncionalidadesChoose">
+                <button class="btnStart">PLAY</button>
+                <p class="messageChoose"></p>
+                <div class="containerLoader">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <audio preload="metadata" id="audioChoose">
+                <source src="../assets/audios/chooseShip.mp3">
+            </audio>
+        </section>
+        <audio preload="metadata" class="audioStart">
+            <source src="../assets/audios/startAudio.mp3" type="audio/mpeg">
+        </audio>
+    </main>
+    <script type="module" src="../javascript/escolhas/choose.js"></script>
+</body>
+</html>
