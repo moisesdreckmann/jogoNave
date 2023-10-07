@@ -1,5 +1,3 @@
-import { naveEscolhida } from "../escolhas/escolhaNave.js"
-
 const nave = document.querySelector('.imgNaveEscolhida')
 const naveContainer = document.querySelector('.containerImg')
 const largura = window.innerWidth
