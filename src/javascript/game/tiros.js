@@ -29,7 +29,7 @@ function saiuDaTela(tiro) {
 }
 
 let tirosEmMovimento = []
-const velocidadeDoTiro = 1
+const velocidadeDoTiro = 1.1
 
 function atualizarPosicaoDosTiros(timestamp) {
     const deltaTempo = ultimoTimestamp ? timestamp - ultimoTimestamp : 0

@@ -10,7 +10,7 @@ const limiteEsquerda = 70
 const limiteDireita = largura - 80
 const limiteSuperior = 70
 const limiteInferior = altura - 80
-let lastTimestamp = null;
+let lastTimestamp = null
 
 function atualizarPosicao() {
     naveContainer.style.left = naveX + 'px'
@@ -23,8 +23,6 @@ function moverNave(timestamp) {
     if (!lastTimestamp) {
         lastTimestamp = timestamp
     }
-
-    //ajusta a velocidade em relação a taxa de quadros do navegador
     const deltaTime = timestamp - lastTimestamp 
     
     if ('a' in teclasPressionadas && naveX > limiteEsquerda) {
@@ -42,7 +40,6 @@ function moverNave(timestamp) {
 
     atualizarPosicao()
     lastTimestamp = timestamp;
-
     requestAnimationFrame(moverNave)
 }
 
