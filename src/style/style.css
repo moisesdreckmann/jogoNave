@@ -446,7 +446,7 @@ body {
 .sprite-container {
     width: 90px;
     height: 90px;
-    background-image: url(spriteExplosao.png);
+    background-image: url(../assets/images/enemys/spriteExplosao.png);
     background-repeat: no-repeat;
     animation: animateSprite .3s step-end forwards;
     background-size: 500px 100px;
