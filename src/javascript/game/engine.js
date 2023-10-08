@@ -1,6 +1,7 @@
 import { naveEscolhida } from "../escolhas/escolhaNave.js"
 import moverNave from "./movimento.js"
 import { atirar } from "./tiros.js"
+import { moveEnemy } from "./enemy.js"
 
 const valorLocalStorage = localStorage.getItem('naveEscolhida')
 
