@@ -64,6 +64,27 @@ font-display: swap;
     }
 }
 
+@keyframes animateSprite {
+    0% {
+        background-position: 0px -6px;
+    }
+    10% {
+        background-position: -99px -6px;
+    }
+    50% {
+        background-position: -199px -6px;
+    }
+    80% {
+        background-position: -299px -6px;
+    }
+    90% {
+        background-position: -399px -6px;
+    }
+    100% {
+        background-position: -499px -6px;
+    }
+}
+
 :root {
     --letraIntro: #f5edec;
     --cor1: #123E59;
@@ -420,4 +441,16 @@ body {
     top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.sprite-container {
+    width: 90px;
+    height: 90px;
+    background-image: url(spriteExplosao.png);
+    background-repeat: no-repeat;
+    animation: animateSprite .3s step-end forwards;
+    background-size: 500px 100px;
+    background-position: 0px -6px;  
+    position: relative; 
+    z-index: 1;   
 }
