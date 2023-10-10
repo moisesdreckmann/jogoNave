@@ -23,19 +23,32 @@ const createEnemy = () => {
 
     enemyPositions.add(randomX)
     document.body.appendChild(enemy)
-    moveEnemy(enemy)
+
+    const enemyDiv = document.createElement("div")
+    enemyDiv.className = 'circle' 
+    const circleSize = 70
+    enemyDiv.style.width = `${circleSize}px`
+    enemyDiv.style.height = `${circleSize}px`
+    enemyDiv.style.position = 'absolute'
+    enemyDiv.style.left = `${randomX +10}px`
+    enemyDiv.style.top = `${randomY}px`
+    document.body.appendChild(enemyDiv)
+
+    moveEnemy(enemy, enemyDiv)
 }
 
-const moveEnemy = (enemy) => {
+const moveEnemy = (enemy, enemyDiv) => {
     const currentY = parseFloat(enemy.style.top)
     if (currentY < (screenHeight-100)) {
         const newY = currentY + 1
         enemy.style.top = newY + "px"
-        requestAnimationFrame(() => moveEnemy(enemy))
+        enemyDiv.style.top = newY + "px" // Atualizar a posição do círculo
+        requestAnimationFrame(() => moveEnemy(enemy, enemyDiv))
     } else {
         const enemyX = parseFloat(enemy.style.left)
         enemyPositions.delete(enemyX)
         enemy.remove()
+        enemyDiv.remove()
 
         if (enemyPositions.size === 0) {
             displayYouWinMessage()

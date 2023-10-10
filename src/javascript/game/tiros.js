@@ -44,7 +44,7 @@ function atualizarPosicaoDosTiros(timestamp) {
         if (saiuDaTela(tiro)) {
             tirosARemover.push(tiro)
         }
-    });
+    })
 
     tirosARemover.forEach((tiro) => {
         containerImg.removeChild(tiro)
