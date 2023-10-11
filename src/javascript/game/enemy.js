@@ -1,4 +1,6 @@
-import { tirosEmMovimento } from './tiros.js';
+import { tirosEmMovimento } from './tiros.js'
+import moverNave from "./movimento.js"
+import { naveEscolhida } from "../escolhas/escolhaNave.js"
 
 const qtdEnemies = 30
 const screenWidth = window.innerWidth
@@ -9,16 +11,16 @@ const enemyPositions = new Set()
 const enemyDivs = []
 const inimigos = []
 const destruction = new Audio('../assets/audios/destruction.mp3')
+const colisao = new Audio('../assets/audios/colisao.mp3')
 let score = document.querySelector('.score')
 let scoreContador = 0
-let formattedScore = String(scoreContador).padStart(4, '0');
-score.innerHTML = `Score: ${formattedScore}`;
+let formattedScore = String(scoreContador).padStart(3, '0');
+score.innerHTML = `Score: ${formattedScore}`
 
 
 function updateScore() {
-    scoreContador+=100
-    let formattedScore = String(scoreContador).padStart(4, '0');
-    score.innerHTML = `Score: ${formattedScore}`;
+    let formattedScore = String(scoreContador).padStart(3, '0')
+    score.innerHTML = `Score: ${formattedScore}`
 }
 
 const createEnemy = () => {
@@ -49,6 +51,7 @@ const createEnemy = () => {
     enemyDiv.style.left = `${randomX +10}px`
     enemyDiv.style.top = `${randomY}px`
     enemyDiv.style.background = 'transparent'
+    enemyDiv.style.borderRadius = '50%'
     document.body.appendChild(enemyDiv)
     enemyDivs.push(enemyDiv);
 
@@ -113,6 +116,7 @@ function removeEnemyAndBullet(enemy, enemyDiv, bullet) {
     destruction.play()
     enemy.remove()
 
+    scoreContador+=100
     updateScore()
 
     // Encontre o índice do inimigo no array e remova-o.
@@ -141,8 +145,11 @@ function removeEnemyAndBullet(enemy, enemyDiv, bullet) {
 
 function checkCollisions() {
     const enemies = document.querySelectorAll('.enemy')
+    const nave = document.querySelector('.imgNaveEscolhida')
+    const naveRect = nave.getBoundingClientRect()
+
     enemies.forEach((enemy, enemyIndex) => {
-        const enemyRect = enemy.getBoundingClientRect()
+        const enemyRect = enemy.getBoundingClientRect();
 
         tirosEmMovimento.forEach((bullet, bulletIndex) => {
             const bulletRect = bullet.getBoundingClientRect();
@@ -150,11 +157,32 @@ function checkCollisions() {
             if (bulletRect.top <= enemyRect.bottom &&
                 enemyRect.left <= bulletRect.right &&
                 enemyRect.right >= bulletRect.left) {
-                removeEnemyAndBullet(enemy, enemyDivs[enemyIndex], bullet)
+                removeEnemyAndBullet(enemy, enemyDivs[enemyIndex], bullet);
             }
-        })
-    })
+        });
+
+        // Verificar colisão com a nave
+        if (
+            naveRect.left + 20 < enemyRect.right - 20 &&
+            naveRect.right - 20 > enemyRect.left + 20 &&
+            naveRect.top + 20 < enemyRect.bottom - 20 &&
+            naveRect.bottom - 20 > enemyRect.top + 20
+        ){
+            const valorLocalStorage = localStorage.getItem('naveEscolhida')
+            const naveBlinking = document.querySelector('.imgNaveEscolhida')
+            naveBlinking.src = valorLocalStorage;
+            naveBlinking.style.visibility = 'hidden'
+            colisao.play()
+            setTimeout(() => {
+                naveBlinking.style.visibility = 'visible'
+            }, 50)    
+            
+            scoreContador-=10
+            updateScore()
+        }
+    });
 }
+
 setInterval(checkCollisions, 100)
 
 export { moveEnemy, enemyPositions, checkCollisions, updateScore }

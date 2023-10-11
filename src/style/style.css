@@ -448,11 +448,11 @@ body {
     height: 90px;
     background-image: url(../assets/images/enemys/spriteExplosao.png);
     background-repeat: no-repeat;
-    animation: animateSprite .3s step-end forwards;
+    animation: animateSprite 20s step-end forwards;
     background-size: 500px 100px;
     background-position: 0px -6px;  
     position: relative; 
-    z-index: 10;   
+    z-index: 100;   
 }
 
 .score {
