@@ -66,8 +66,8 @@ function atirar(event) {
         let novoTiro1, novoTiro2
         
         if (valorLocalStorage == '../assets/images/naves/nave1.png') {
-            novoTiro1 = criarNovoTiro('47%')
-            novoTiro2 = criarNovoTiro('47%')
+            novoTiro1 = criarNovoTiro('30%')
+            novoTiro2 = criarNovoTiro('65%')
         } else if (valorLocalStorage == '../assets/images/naves/nave2.png') {
             novoTiro1 = criarNovoTiro('28%')
             novoTiro2 = criarNovoTiro('67%')
@@ -89,4 +89,4 @@ document.addEventListener('keydown', atirar)
 let ultimoTimestamp = 0
 requestAnimationFrame(atualizarPosicaoDosTiros)
 
-export { atirar }
+export { atirar, tirosEmMovimento, criarNovoTiro }

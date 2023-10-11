@@ -1,8 +1,12 @@
+import { tirosEmMovimento } from './tiros.js';
+
 const qtdEnemies = 30
 const screenWidth = window.innerWidth
 const screenHeight = window.innerHeight
 const timeInterval = 3500
 const enemyPositions = new Set()
+const enemyDivs = []
+const inimigos = []
 
 const createEnemy = () => {
     let totalEnemys = [1, 2, 3, 4, 5]
@@ -33,6 +37,7 @@ const createEnemy = () => {
     enemyDiv.style.left = `${randomX +10}px`
     enemyDiv.style.top = `${randomY}px`
     document.body.appendChild(enemyDiv)
+    enemyDivs.push(enemyDiv);
 
     moveEnemy(enemy, enemyDiv)
 }
@@ -89,4 +94,50 @@ const displayYouWinMessage = () => {
 
 createEnemiesLoop()
 
-export { moveEnemy }
+function removeEnemyAndBullet(enemy, enemyDiv, bullet) {
+    enemy.classList.add('sprite-container')
+    enemy.remove()
+
+    // Encontre o índice do inimigo no array e remova-o.
+    const enemyIndex = inimigos.indexOf(enemy)
+    if (enemyIndex > -1) {
+        inimigos.splice(enemyIndex, 1)
+    }
+
+    // Remova todas as enemyDivs correspondentes ao inimigo.
+    const removedEnemyDivs = enemyDivs.splice(enemyIndex, 1)
+    removedEnemyDivs.forEach((enemyDiv) => {
+        enemyDiv.remove()
+    })
+
+    // Remova o tiro do array de tiros em movimento.
+    const bulletIndex = tirosEmMovimento.indexOf(bullet)
+    if (bulletIndex > -1) {
+        tirosEmMovimento.splice(bulletIndex, 1)
+    }
+
+    // Remova o tiro do DOM.
+    const containerImg = document.querySelector('.containerImg');
+    containerImg.removeChild(bullet)
+}
+
+
+function checkCollisions() {
+    const enemies = document.querySelectorAll('.enemy')
+    enemies.forEach((enemy, enemyIndex) => {
+        const enemyRect = enemy.getBoundingClientRect()
+
+        tirosEmMovimento.forEach((bullet, bulletIndex) => {
+            const bulletRect = bullet.getBoundingClientRect();
+            
+            if (bulletRect.top <= enemyRect.bottom &&
+                enemyRect.left <= bulletRect.right &&
+                enemyRect.right >= bulletRect.left) {
+                removeEnemyAndBullet(enemy, enemyDivs[enemyIndex], bullet)
+            }
+        })
+    })
+}
+setInterval(checkCollisions, 100)
+
+export { moveEnemy, enemyPositions, checkCollisions }
