@@ -4,9 +4,11 @@ const qtdEnemies = 30
 const screenWidth = window.innerWidth
 const screenHeight = window.innerHeight
 const timeInterval = 3500
+
 const enemyPositions = new Set()
 const enemyDivs = []
 const inimigos = []
+const destruction = new Audio('../assets/audios/destruction.mp3')
 
 const createEnemy = () => {
     let totalEnemys = [1, 2, 3, 4, 5]
@@ -24,7 +26,6 @@ const createEnemy = () => {
     randomY = -100
     enemy.style.left = randomX + "px"
     enemy.style.top = randomY + "px"
-
     enemyPositions.add(randomX)
     document.body.appendChild(enemy)
 
@@ -36,6 +37,7 @@ const createEnemy = () => {
     enemyDiv.style.position = 'absolute'
     enemyDiv.style.left = `${randomX +10}px`
     enemyDiv.style.top = `${randomY}px`
+    enemyDiv.style.background = 'transparent'
     document.body.appendChild(enemyDiv)
     enemyDivs.push(enemyDiv);
 
@@ -95,7 +97,8 @@ const displayYouWinMessage = () => {
 createEnemiesLoop()
 
 function removeEnemyAndBullet(enemy, enemyDiv, bullet) {
-    enemy.classList.add('sprite-container')
+    destruction.currentTime = 0
+    destruction.play()
     enemy.remove()
 
     // Encontre o índice do inimigo no array e remova-o.
