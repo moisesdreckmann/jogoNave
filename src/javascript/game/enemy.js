@@ -3,12 +3,23 @@ import { tirosEmMovimento } from './tiros.js';
 const qtdEnemies = 30
 const screenWidth = window.innerWidth
 const screenHeight = window.innerHeight
-const timeInterval = 3500
+const timeInterval = 2000
 
 const enemyPositions = new Set()
 const enemyDivs = []
 const inimigos = []
 const destruction = new Audio('../assets/audios/destruction.mp3')
+let score = document.querySelector('.score')
+let scoreContador = 0
+let formattedScore = String(scoreContador).padStart(4, '0');
+score.innerHTML = `Score: ${formattedScore}`;
+
+
+function updateScore() {
+    scoreContador+=100
+    let formattedScore = String(scoreContador).padStart(4, '0');
+    score.innerHTML = `Score: ${formattedScore}`;
+}
 
 const createEnemy = () => {
     let totalEnemys = [1, 2, 3, 4, 5]
@@ -46,6 +57,7 @@ const createEnemy = () => {
 
 const moveEnemy = (enemy, enemyDiv) => {
     const currentY = parseFloat(enemy.style.top)
+    const controlaPos = currentY
     if (currentY < (screenHeight-100)) {
         const newY = currentY + 1
         enemy.style.top = newY + "px"
@@ -101,6 +113,8 @@ function removeEnemyAndBullet(enemy, enemyDiv, bullet) {
     destruction.play()
     enemy.remove()
 
+    updateScore()
+
     // Encontre o índice do inimigo no array e remova-o.
     const enemyIndex = inimigos.indexOf(enemy)
     if (enemyIndex > -1) {
@@ -143,4 +157,4 @@ function checkCollisions() {
 }
 setInterval(checkCollisions, 100)
 
-export { moveEnemy, enemyPositions, checkCollisions }
+export { moveEnemy, enemyPositions, checkCollisions, updateScore }

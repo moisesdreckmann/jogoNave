@@ -454,3 +454,13 @@ body {
     position: relative; 
     z-index: 10;   
 }
+
+.score {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    z-index: 10;
+    color: rgba(255, 255, 255, 0.345);
+    font-size: 20px;
+    letter-spacing: 3px;
+}
