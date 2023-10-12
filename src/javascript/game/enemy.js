@@ -112,35 +112,48 @@ const displayYouWinMessage = () => {
 createEnemiesLoop()
 
 function removeEnemyAndBullet(enemy, enemyDiv, bullet) {
-    destruction.currentTime = 0
-    destruction.play()
-    enemy.remove()
+    destruction.currentTime = 0;
+    destruction.play();
+    enemy.remove();
 
-    scoreContador+=100
+    const destructionEffect = document.createElement("div")
+    destructionEffect.className = 'sprite-container'
+    destructionEffect.style.left = enemy.style.left
+    destructionEffect.style.top = enemy.style.top
+    destructionEffect.style.zIndex = '1000'
+    document.body.appendChild(destructionEffect)
+
+    setTimeout(() => {
+        destructionEffect.remove()
+    }, 500)
+
+    scoreContador += 100
     updateScore()
 
     // Encontre o índice do inimigo no array e remova-o.
-    const enemyIndex = inimigos.indexOf(enemy)
+    const enemyIndex = inimigos.indexOf(enemy);
     if (enemyIndex > -1) {
-        inimigos.splice(enemyIndex, 1)
+        inimigos.splice(enemyIndex, 1);
     }
 
     // Remova todas as enemyDivs correspondentes ao inimigo.
-    const removedEnemyDivs = enemyDivs.splice(enemyIndex, 1)
+    const removedEnemyDivs = enemyDivs.splice(enemyIndex, 1);
     removedEnemyDivs.forEach((enemyDiv) => {
-        enemyDiv.remove()
-    })
+        enemyDiv.remove();
+    });
 
     // Remova o tiro do array de tiros em movimento.
-    const bulletIndex = tirosEmMovimento.indexOf(bullet)
+    const bulletIndex = tirosEmMovimento.indexOf(bullet);
     if (bulletIndex > -1) {
-        tirosEmMovimento.splice(bulletIndex, 1)
+        tirosEmMovimento.splice(bulletIndex, 1);
     }
 
     // Remova o tiro do DOM.
     const containerImg = document.querySelector('.containerImg');
-    containerImg.removeChild(bullet)
+    containerImg.removeChild(bullet);
 }
+
+
 
 
 function checkCollisions() {
