@@ -2,7 +2,7 @@ import { tirosEmMovimento } from './tiros.js'
 import moverNave from "./movimento.js"
 import { naveEscolhida } from "../escolhas/escolhaNave.js"
 
-const qtdEnemies = 30
+const qtdEnemies = 32
 const screenWidth = window.innerWidth
 const screenHeight = window.innerHeight
 const timeInterval = 2000
