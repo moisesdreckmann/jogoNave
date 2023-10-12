@@ -1,6 +1,7 @@
 import { tirosEmMovimento } from './tiros.js'
 import moverNave from "./movimento.js"
 import { naveEscolhida } from "../escolhas/escolhaNave.js"
+import displayYouWinMessage from './win.js'
 
 const qtdEnemies = 32
 const screenWidth = window.innerWidth
@@ -96,20 +97,9 @@ const createEnemiesLoop = () => {
     }
 }
 
-const displayYouWinMessage = () => {
-    const p = document.querySelector('.condicao')
-    p.innerHTML = 'YOU WIN'
-    setTimeout(() => {
-        setInterval(() => {
-            p.classList.toggle('condicao')
-        }, 500)
-    },1000)
-    setTimeout(() => {
-        window.location.href = '../../../index.html'
-    },3500)
-}
-
 createEnemiesLoop()
+
+
 
 function removeEnemyAndBullet(enemy, enemyDiv, bullet) {
     destruction.currentTime = 0;
@@ -152,9 +142,6 @@ function removeEnemyAndBullet(enemy, enemyDiv, bullet) {
     const containerImg = document.querySelector('.containerImg');
     containerImg.removeChild(bullet);
 }
-
-
-
 
 function checkCollisions() {
     const enemies = document.querySelectorAll('.enemy')
