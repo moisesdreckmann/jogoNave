@@ -1,6 +1,7 @@
 import { tirosEmMovimento } from './tiros.js'
 import moverNave from "./movimento.js"
 import { naveEscolhida } from "../escolhas/escolhaNave.js"
+import displayYouWinMessage from './win.js'
 
 const qtdEnemies = 32
 const screenWidth = window.innerWidth
@@ -183,24 +184,6 @@ function checkCollisions() {
 }
 
 
-const displayYouWinMessage = (formattedScore, scoreContador) => {
-    const p = document.querySelector('.condicao')
-    formattedScore = String(scoreContador).padStart(3, '0')
-    if(scoreContador >=0) {
-        p.innerHTML = `YOU WIN SCORE: ${formattedScore}`
-    } else {
-        p.innerHTML = `YOU LOOSE SCORE: ${formattedScore}`
-    }  
-    setTimeout(() => {
-        setInterval(() => {
-            p.classList.toggle('condicao')
-        }, 500)
-    },1000)
-    setTimeout(() => {
-        window.location.href = '../../../index.html'
-    },3500)
-}
-
 setInterval(checkCollisions, 100)
 
-export { moveEnemy, enemyPositions, checkCollisions, updateScore }
+export { moveEnemy, enemyPositions, checkCollisions, updateScore, scoreContador, formattedScore }
