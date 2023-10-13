@@ -2,5 +2,5 @@
 
 * Jogo de nave desenvolvido em JS
 
-Link: https://jogonave-moises.netlify.app/
+Link: https://jogo-nave-moises.netlify.app/index.html
 
