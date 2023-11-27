@@ -1,4 +1,4 @@
-### Jogo desenvolvido em HTML JS
+### Jogo desenvolvido em VITE JS
 
 * Jogo de nave desenvolvido em JS
 
